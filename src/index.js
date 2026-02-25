@@ -46,3 +46,10 @@ initGameboard();
 //Create players
 //Creation of both a real and computer player.
 //Should track which players turn it is
+
+class Player {
+	constructor() {
+		this.name = "player";
+		this.turn = true;
+	}
+}

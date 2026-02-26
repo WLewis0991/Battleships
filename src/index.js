@@ -1,5 +1,4 @@
 // Battleship
-import { Ship } from "./ship.js";
 import { Gameboard } from "./board.js";
 
 const board = new Gameboard();

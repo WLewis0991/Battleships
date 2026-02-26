@@ -19,12 +19,9 @@ class Ship {
 	isSunk() {
 		if (this.hits === this.length) {
 			this.sunk = true;
+			console.log(`${this.name} has been sunk!`);
 			return true;
 		}
 		return false;
-	}
-
-	placeShip(x, y) {
-		board[x][y] = 1;
 	}
 }

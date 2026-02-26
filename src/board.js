@@ -36,7 +36,6 @@ class Gameboard {
 		}
 		if (attack === 1) {
 			this.checkHitShip(x, y);
-			console.log("Hit");
 			this.board[x][y] = "x";
 			this.attempts.push([x, y]);
 
@@ -56,7 +55,8 @@ class Gameboard {
 			const hit = coords.indexOf(attack);
 			if (hit >= 0) {
 				console.log(`${ship.name} has been hit!`);
-				ship.hits++;
+				ship.hit();
+				ship.isSunk();
 			}
 		}
 	}

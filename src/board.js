@@ -25,6 +25,21 @@ class Gameboard {
 			}
 		}
 	}
+	//CFunction to randomize computer attacks
+	compAttack() {
+		const x = Math.floor(Math.random() * 10);
+		const y = Math.floor(Math.random() * 10);
+		let coords = [x, y];
+		let attempts = this.attempts;
+		coords = JSON.stringify(coords);
+		attempts = JSON.stringify(attempts);
+		const attack = attempts.indexOf(coords);
+		if (attack < 0) {
+			this.recieveAttack(x, y);
+		} else {
+			this.compAttack();
+		}
+	}
 
 	recieveAttack(x, y) {
 		const attack = this.board[x][y];
@@ -45,7 +60,7 @@ class Gameboard {
 			return;
 		}
 	}
-
+	//Check which ship was hit and log hit or sink
 	checkHitShip(x, y) {
 		for (const ship of Object.values(this.ships)) {
 			let coords = ship.coords;
@@ -66,7 +81,7 @@ class Gameboard {
 			this.generateAndPlaceShip(ship);
 		}
 	}
-
+	//Random ship placement
 	generateAndPlaceShip(ship) {
 		const length = ship.length;
 		let position = [];

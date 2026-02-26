@@ -1,11 +1,13 @@
 import { Ship } from "./ship.js";
-
+import { player } from "./player.js";
 export { Gameboard };
 
 class Gameboard {
 	constructor() {
 		this.board = [];
 		this.attempts = [];
+		this.shipsSunk = 0;
+
 		this.ships = {
 			carrier: new Ship("Carrier", 5),
 			battleship: new Ship("Battleship", 4),
@@ -71,7 +73,9 @@ class Gameboard {
 			if (hit >= 0) {
 				console.log(`${ship.name} has been hit!`);
 				ship.hit();
-				ship.isSunk();
+				if (ship.isSunk()) {
+					this.shipsSunk++;
+				}
 			}
 		}
 	}

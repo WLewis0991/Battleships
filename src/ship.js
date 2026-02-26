@@ -12,7 +12,9 @@ class Ship {
 		this.coords = null;
 	}
 
-	hit() {
+	hit(x, y) {
+		const square = document.querySelector(`[data-x="${x}"][data-y="${y}"]`);
+		square.classList.add("hit");
 		return this.hits++;
 	}
 
@@ -20,6 +22,7 @@ class Ship {
 		if (this.hits === this.length) {
 			this.sunk = true;
 			console.log(`${this.name} has been sunk!`);
+
 			return true;
 		}
 		return false;

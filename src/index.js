@@ -5,11 +5,6 @@ import { Gameboard } from "./board.js";
 
 const player1 = new Player("Will");
 player1.board.placeAllShips();
-player1.board.compAttack();
-player1.board.compAttack();
-player1.board.compAttack();
-player1.board.compAttack();
-
 console.log(player1.board.board);
 console.log(player1);
 
@@ -48,5 +43,17 @@ boardEl.addEventListener("click", (e) => {
 	const x = Number(e.target.dataset.x);
 	const y = Number(e.target.dataset.y);
 
-	player1.board.recieveAttack(x, y);
+	const result = player1.board.recieveAttack(x, y);
+
+	if (result === "hit") {
+		e.target.classList.add("hit");
+	}
+
+	if (result === "miss") {
+		e.target.classList.add("miss");
+	}
+
+	if (result === "already") {
+		console.log("Stop clicking the same square.");
+	}
 });

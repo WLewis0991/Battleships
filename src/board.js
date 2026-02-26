@@ -42,6 +42,7 @@ class Gameboard {
 			this.compAttack();
 		}
 	}
+
 	//Check if attack was a hit o miss
 	recieveAttack(x, y) {
 		const attack = this.board[x][y];
@@ -49,7 +50,7 @@ class Gameboard {
 			console.log("Miss!");
 			this.board[x][y] = "2";
 			this.attempts.push([x, y]);
-			return;
+			return "miss";
 		}
 		if (attack === 1) {
 			this.checkHitShip(x, y);
@@ -58,7 +59,7 @@ class Gameboard {
 			return;
 		} else {
 			console.log("Already attacked");
-			return;
+			return "already";
 		}
 	}
 	//Check which ship was hit and log hit or sink
@@ -70,8 +71,8 @@ class Gameboard {
 			attack = JSON.stringify(attack);
 			const hit = coords.indexOf(attack);
 			if (hit >= 0) {
-				ship.hit();
-				if (!ship.isSunk()) {
+				ship.hit(x, y);
+				if (!ship.isSunk(x, y)) {
 					console.log(`${ship.name} has been hit!`);
 				} else {
 					this.shipsSunk++;

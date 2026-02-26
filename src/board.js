@@ -35,13 +35,29 @@ class Gameboard {
 			return;
 		}
 		if (attack === 1) {
+			this.checkHitShip(x, y);
 			console.log("Hit");
 			this.board[x][y] = "x";
 			this.attempts.push([x, y]);
+
 			return;
 		} else {
 			console.log("Already attacked");
 			return;
+		}
+	}
+
+	checkHitShip(x, y) {
+		for (const ship of Object.values(this.ships)) {
+			let coords = ship.coords;
+			let attack = [x, y];
+			coords = JSON.stringify(coords);
+			attack = JSON.stringify(attack);
+			const hit = coords.indexOf(attack);
+			if (hit >= 0) {
+				console.log(`${ship.name} has been hit!`);
+				ship.hits++;
+			}
 		}
 	}
 

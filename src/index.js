@@ -14,3 +14,4 @@ board.recieveAttack(2, 6);
 board.recieveAttack(3, 1);
 board.recieveAttack(4, 4);
 console.log(board);
+console.log(board.attempts);

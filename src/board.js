@@ -1,5 +1,5 @@
 import { Ship } from "./ship.js";
-import { player } from "./player.js";
+
 export { Gameboard };
 
 class Gameboard {
@@ -8,6 +8,7 @@ class Gameboard {
 		this.attempts = [];
 		this.shipsSunk = 0;
 
+		// Playable ships
 		this.ships = {
 			carrier: new Ship("Carrier", 5),
 			battleship: new Ship("Battleship", 4),
@@ -18,7 +19,7 @@ class Gameboard {
 
 		this.initBoard();
 	}
-
+	//Creation of board.
 	initBoard() {
 		for (let i = 0; i < 10; i++) {
 			this.board[i] = [];
@@ -42,7 +43,7 @@ class Gameboard {
 			this.compAttack();
 		}
 	}
-
+	//Check if attack was a hit o miss
 	recieveAttack(x, y) {
 		const attack = this.board[x][y];
 		if (attack === 0) {
@@ -55,7 +56,6 @@ class Gameboard {
 			this.checkHitShip(x, y);
 			this.board[x][y] = "x";
 			this.attempts.push([x, y]);
-
 			return;
 		} else {
 			console.log("Already attacked");
@@ -71,15 +71,16 @@ class Gameboard {
 			attack = JSON.stringify(attack);
 			const hit = coords.indexOf(attack);
 			if (hit >= 0) {
-				console.log(`${ship.name} has been hit!`);
 				ship.hit();
-				if (ship.isSunk()) {
+				if (!ship.isSunk()) {
+					console.log(`${ship.name} has been hit!`);
+				} else {
 					this.shipsSunk++;
 				}
 			}
 		}
 	}
-
+	//goes through all ships and places them
 	placeAllShips() {
 		for (const ship of Object.values(this.ships)) {
 			this.generateAndPlaceShip(ship);

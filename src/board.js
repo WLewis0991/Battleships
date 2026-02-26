@@ -5,6 +5,7 @@ export { Gameboard };
 class Gameboard {
 	constructor() {
 		this.board = [];
+		this.attempts = [];
 		this.ships = {
 			carrier: new Ship("Carrier", 5),
 			battleship: new Ship("Battleship", 4),
@@ -22,6 +23,25 @@ class Gameboard {
 			for (let j = 0; j < 10; j++) {
 				this.board[i][j] = 0;
 			}
+		}
+	}
+
+	recieveAttack(x, y) {
+		const attack = this.board[x][y];
+		if (attack === 0) {
+			console.log("Miss!");
+			this.board[x][y] = "2";
+			this.attempts.push([x, y]);
+			return;
+		}
+		if (attack === 1) {
+			console.log("Hit");
+			this.board[x][y] = "x";
+			this.attempts.push([x, y]);
+			return;
+		} else {
+			console.log("Already attacked");
+			return;
 		}
 	}
 

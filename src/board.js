@@ -1,5 +1,4 @@
 import { Ship } from "./ship.js";
-
 export { Gameboard };
 
 class Gameboard {

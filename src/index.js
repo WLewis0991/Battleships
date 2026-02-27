@@ -4,9 +4,11 @@ import { Player } from "./player.js";
 import { Gameboard } from "./board.js";
 
 const player1 = new Player("Will");
+const player2 = new Player("Computer");
 player1.board.placeAllShips();
-console.log(player1.board.board);
+player2.board.placeAllShips();
 console.log(player1);
+console.log(player2);
 
 const button = document.getElementById("start");
 button.addEventListener("click", () => {

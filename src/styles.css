@@ -9,6 +9,13 @@ body {
 	font-family: sans-serif;
 }
 
+.game {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+}
+
 .board {
 	display: flex;
 	width: 502px;
@@ -39,4 +46,15 @@ body {
 
 .miss {
 	background-color: lightblue;
+}
+
+.enemyBoard {
+	display: flex;
+	width: 502px;
+	height: 502px;
+	flex-wrap: wrap;
+	border: 1px solid black;
+	padding: 0px;
+	margin: 0px;
+	box-sizing: border-box;
 }

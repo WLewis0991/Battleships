@@ -58,9 +58,6 @@ const boardEl = document.querySelector(".board");
 
 boardEl.addEventListener("click", (e) => {
 	if (!e.target.classList.contains("square")) return;
-	setTimeout(() => {
-		player2.board.compAttack();
-	}, 1000);
 
 	const x = Number(e.target.dataset.x);
 	const y = Number(e.target.dataset.y);
@@ -70,10 +67,16 @@ boardEl.addEventListener("click", (e) => {
 
 	if (result === "hit") {
 		e.target.classList.add("hit");
+		setTimeout(() => {
+			player2.board.compAttack();
+		}, 1000);
 	}
 
 	if (result === "miss") {
 		e.target.classList.add("miss");
+		setTimeout(() => {
+			player2.board.compAttack();
+		}, 1000);
 	}
 
 	if (result === "already") {

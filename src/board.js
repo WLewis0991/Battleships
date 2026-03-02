@@ -56,7 +56,7 @@ class Gameboard {
 				squares.forEach((sq) => {
 					if (Number(sq.dataset.x) === x && Number(sq.dataset.y) === y) {
 						console.log("ship");
-						// Example:
+						sq.classList.remove("ship");
 						sq.classList.add("hit");
 					}
 				});
@@ -76,7 +76,7 @@ class Gameboard {
 			return "miss";
 		}
 		if (attack === 1) {
-			let result = this.checkHitShip(x, y);
+			const result = this.checkHitShip(x, y);
 			this.board[x][y] = "x";
 			this.attempts.push([x, y]);
 			return result;

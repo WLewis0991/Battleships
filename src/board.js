@@ -27,6 +27,9 @@ class Gameboard {
 			}
 		}
 	}
+
+	//loadShips() {}
+
 	//CFunction to randomize computer attacks
 	compAttack() {
 		const x = Math.floor(Math.random() * 10);
@@ -66,6 +69,7 @@ class Gameboard {
 	checkHitShip(x, y) {
 		for (const ship of Object.values(this.ships)) {
 			let coords = ship.coords;
+			console.log(coords);
 			let attack = [x, y];
 			coords = JSON.stringify(coords);
 			attack = JSON.stringify(attack);
@@ -120,6 +124,22 @@ class Gameboard {
 		// Mark the board
 		for (const [row, col] of position) {
 			this.board[row][col] = 1;
+		}
+	}
+
+	markShips() {
+		for (const ship of Object.values(this.ships)) {
+			for (const [i, j] of ship.coords) {
+				const squares = document.querySelectorAll(".computer");
+
+				squares.forEach((sq) => {
+					if (Number(sq.dataset.x) === i && Number(sq.dataset.y) === j) {
+						console.log("ship");
+						// Example:
+						sq.classList.add("ship");
+					}
+				});
+			}
 		}
 	}
 }

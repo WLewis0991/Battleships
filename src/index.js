@@ -42,7 +42,7 @@ function buildBoard() {
 
 		for (let j = 0; j < 10; j++) {
 			const square = document.createElement("div");
-			square.classList.add("square");
+			square.classList.add("computer");
 			square.dataset.x = i;
 			square.dataset.y = j;
 
@@ -50,6 +50,8 @@ function buildBoard() {
 		}
 		enemyBoard.appendChild(row);
 	}
+	console.log(enemyBoard);
+	console.log(board);
 }
 
 const boardEl = document.querySelector(".board");
@@ -59,6 +61,7 @@ boardEl.addEventListener("click", (e) => {
 
 	const x = Number(e.target.dataset.x);
 	const y = Number(e.target.dataset.y);
+	console.log(player1.board.ships.names);
 
 	const result = player1.board.recieveAttack(x, y);
 
@@ -74,3 +77,10 @@ boardEl.addEventListener("click", (e) => {
 		console.log("Stop clicking the same square.");
 	}
 });
+
+const testButton = document.getElementById("testing");
+testButton.addEventListener("click", () => {
+	player2.board.markShips();
+});
+
+//loadShips();

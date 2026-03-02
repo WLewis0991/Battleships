@@ -40,7 +40,27 @@ class Gameboard {
 		attempts = JSON.stringify(attempts);
 		const attack = attempts.indexOf(coords);
 		if (attack < 0) {
-			this.recieveAttack(x, y);
+			const result = this.recieveAttack(x, y);
+			if (result === "miss") {
+				const squares = document.querySelectorAll(".computer");
+				squares.forEach((sq) => {
+					if (Number(sq.dataset.x) === x && Number(sq.dataset.y) === y) {
+						console.log("ship");
+						// Example:
+						sq.classList.add("miss");
+					}
+				});
+			}
+			if (result === "hit") {
+				const squares = document.querySelectorAll(".computer");
+				squares.forEach((sq) => {
+					if (Number(sq.dataset.x) === x && Number(sq.dataset.y) === y) {
+						console.log("ship");
+						// Example:
+						sq.classList.add("hit");
+					}
+				});
+			}
 		} else {
 			this.compAttack();
 		}
@@ -56,10 +76,10 @@ class Gameboard {
 			return "miss";
 		}
 		if (attack === 1) {
-			this.checkHitShip(x, y);
+			let result = this.checkHitShip(x, y);
 			this.board[x][y] = "x";
 			this.attempts.push([x, y]);
-			return;
+			return result;
 		} else {
 			console.log("Already attacked");
 			return "already";
@@ -78,8 +98,10 @@ class Gameboard {
 				ship.hit(x, y);
 				if (!ship.isSunk(x, y)) {
 					console.log(`${ship.name} has been hit!`);
+					return "hit";
 				} else {
 					this.shipsSunk++;
+					return "sunk";
 				}
 			}
 		}

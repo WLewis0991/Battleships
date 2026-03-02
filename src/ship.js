@@ -13,9 +13,8 @@ class Ship {
 	}
 
 	hit(x, y) {
-		const square = document.querySelector(`[data-x="${x}"][data-y="${y}"]`);
-		square.classList.add("hit");
-		return this.hits++;
+		this.hits++;
+		return "hit";
 	}
 
 	isSunk() {

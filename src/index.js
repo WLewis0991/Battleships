@@ -88,5 +88,3 @@ const testButton = document.getElementById("testing");
 testButton.addEventListener("click", () => {
 	player2.board.markShips();
 });
-
-//loadShips();

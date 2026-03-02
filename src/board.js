@@ -89,7 +89,6 @@ class Gameboard {
 	checkHitShip(x, y) {
 		for (const ship of Object.values(this.ships)) {
 			let coords = ship.coords;
-			console.log(coords);
 			let attack = [x, y];
 			coords = JSON.stringify(coords);
 			attack = JSON.stringify(attack);
@@ -101,11 +100,11 @@ class Gameboard {
 					return "hit";
 				} else {
 					this.shipsSunk++;
-					return "sunk";
 				}
 			}
 		}
 	}
+
 	//goes through all ships and places them
 	placeAllShips() {
 		for (const ship of Object.values(this.ships)) {

@@ -20,6 +20,8 @@ class Ship {
 	isSunk() {
 		if (this.hits === this.length) {
 			this.sunk = true;
+			const message = document.getElementById("message");
+			message.innerText = `A ${this.name} has been sunk!`;
 			console.log(`${this.name} has been sunk!`);
 			//			const coords = this.coords;
 			//			for (let i = 0; i < coords.length; i++) {

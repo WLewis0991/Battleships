@@ -43,8 +43,10 @@ class Gameboard {
 		attempts = JSON.stringify(attempts);
 		const attack = attempts.indexOf(coords);
 		if (attack < 0) {
+			const message = document.getElementById("message");
 			const result = this.recieveAttack(x, y);
 			if (result === "miss") {
+				message.innerText = `${this.name} missed!`;
 				const squares = document.querySelectorAll(".computer");
 				squares.forEach((sq) => {
 					if (Number(sq.dataset.x) === x && Number(sq.dataset.y) === y) {
@@ -53,6 +55,7 @@ class Gameboard {
 				});
 			}
 			if (result === "hit") {
+				message.innerText = `${this.name} hit a ship!`;
 				const squares = document.querySelectorAll(".computer");
 				squares.forEach((sq) => {
 					if (Number(sq.dataset.x) === x && Number(sq.dataset.y) === y) {

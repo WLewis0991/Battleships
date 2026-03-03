@@ -84,9 +84,11 @@ function addListeners(e) {
 	const y = Number(e.target.dataset.y);
 
 	const result = player1.board.recieveAttack(x, y);
+	const message = document.getElementById("message");
 
 	if (result === "hit") {
 		e.target.classList.add("hit");
+		message.innerText = `${player1.name} hit a ship!`;
 		setTimeout(() => {
 			player2.board.compAttack();
 		}, 1000);
@@ -94,6 +96,7 @@ function addListeners(e) {
 
 	if (result === "miss") {
 		e.target.classList.add("miss");
+		message.innerText = `${player1.name} missed!`;
 		setTimeout(() => {
 			player2.board.compAttack();
 		}, 1000);

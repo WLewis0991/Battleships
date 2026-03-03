@@ -5,15 +5,16 @@ import { Gameboard } from "./board.js";
 
 const player1 = new Player("Will");
 const player2 = new Player("Computer");
-player1.board.placeAllShips();
-player2.board.placeAllShips();
-console.log(player1);
-console.log(player2);
 
 const button = document.getElementById("start");
 button.addEventListener("click", () => {
 	console.log("button clicked");
+	player1.board.placeAllShips();
+	player2.board.placeAllShips();
+	console.log("ships placed");
 	buildBoard();
+	player2.board.markShips();
+	console.log("board built");
 });
 
 function buildBoard() {
@@ -50,8 +51,6 @@ function buildBoard() {
 		}
 		enemyBoard.appendChild(row);
 	}
-	console.log(enemyBoard);
-	console.log(board);
 }
 
 const boardEl = document.querySelector(".board");
@@ -61,7 +60,6 @@ boardEl.addEventListener("click", (e) => {
 
 	const x = Number(e.target.dataset.x);
 	const y = Number(e.target.dataset.y);
-	console.log(player1.board.ships.names);
 
 	const result = player1.board.recieveAttack(x, y);
 
@@ -79,12 +77,15 @@ boardEl.addEventListener("click", (e) => {
 		}, 1000);
 	}
 
+	if (result === "sunk") {
+		e.target.classList.add("hit");
+		player1.board.checkWin();
+		setTimeout(() => {
+			player2.board.compAttack();
+		}, 1000);
+	}
+
 	if (result === "already") {
 		console.log("Stop clicking the same square.");
 	}
-});
-
-const testButton = document.getElementById("testing");
-testButton.addEventListener("click", () => {
-	player2.board.markShips();
 });

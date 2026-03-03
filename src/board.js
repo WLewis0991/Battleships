@@ -2,10 +2,11 @@ import { Ship } from "./ship.js";
 export { Gameboard };
 
 class Gameboard {
-	constructor() {
+	constructor(name) {
 		this.board = [];
 		this.attempts = [];
 		this.shipsSunk = 0;
+		this.name = name;
 
 		// Playable ships
 		this.ships = {
@@ -45,8 +46,6 @@ class Gameboard {
 				const squares = document.querySelectorAll(".computer");
 				squares.forEach((sq) => {
 					if (Number(sq.dataset.x) === x && Number(sq.dataset.y) === y) {
-						console.log("ship");
-						// Example:
 						sq.classList.add("miss");
 					}
 				});
@@ -55,10 +54,19 @@ class Gameboard {
 				const squares = document.querySelectorAll(".computer");
 				squares.forEach((sq) => {
 					if (Number(sq.dataset.x) === x && Number(sq.dataset.y) === y) {
-						console.log("ship");
 						sq.classList.remove("ship");
 						sq.classList.add("hit");
 					}
+				});
+			}
+			if (result === "sunk") {
+				const squares = document.querySelectorAll(".computer");
+				squares.forEach((sq) => {
+					if (Number(sq.dataset.x) === x && Number(sq.dataset.y) === y) {
+						sq.classList.remove("ship");
+						sq.classList.add("hit");
+					}
+					this.checkWin();
 				});
 			}
 		} else {
@@ -88,18 +96,17 @@ class Gameboard {
 	//Check which ship was hit and log hit or sink
 	checkHitShip(x, y) {
 		for (const ship of Object.values(this.ships)) {
-			let coords = ship.coords;
-			let attack = [x, y];
-			coords = JSON.stringify(coords);
-			attack = JSON.stringify(attack);
-			const hit = coords.indexOf(attack);
-			if (hit >= 0) {
-				ship.hit(x, y);
-				if (!ship.isSunk(x, y)) {
+			for (const coord of ship.coords) {
+				if (coord[0] === x && coord[1] === y) {
+					ship.hit();
+
+					if (ship.isSunk()) {
+						this.shipsSunk++;
+						return "sunk";
+					}
+
 					console.log(`${ship.name} has been hit!`);
 					return "hit";
-				} else {
-					this.shipsSunk++;
 				}
 			}
 		}
@@ -155,12 +162,17 @@ class Gameboard {
 
 				squares.forEach((sq) => {
 					if (Number(sq.dataset.x) === i && Number(sq.dataset.y) === j) {
-						console.log("ship");
-						// Example:
 						sq.classList.add("ship");
 					}
 				});
 			}
 		}
+	}
+
+	checkWin() {
+		if (this.shipsSunk === 5) {
+			alert(`${this.name} won!`);
+		}
+		return;
 	}
 }

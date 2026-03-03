@@ -1,4 +1,9 @@
 /* Style sheet */
+* {
+	margin: 0;
+	padding: 0;
+}
+
 
 body {
 	display: flex;
@@ -9,12 +14,44 @@ body {
 	font-family: sans-serif;
 }
 
+#winner{
+	display: flex;
+	flex-direction: column;
+	  position: fixed;
+	  width:600px;
+	  height: 200px;
+	  justify-content: center;
+	  align-items: center;
+  top: 50%;         /* Moves the top edge to the vertical center */
+  left: 50%;        /* Moves the left edge to the horizontal center */
+  transform: translate(-50%, -50%);
+
+}
+
 #winner::backdrop {
 	background: rgba(0, 0, 0, 0.4);
 	backdrop-filter: blur(5px);
 }
 
+header {
+	flex-grow: 0;
+	width: 105%;
+	height: 40px;
+	text-align: center;
+	background-color: grey;
+	margin: 0;
+	padding: 10px;
+}
+
 .game {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	flex-grow: 1;
+}
+
+.boardContainer {
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -74,4 +111,11 @@ body {
 
 .ship {
 	background-color: black;
+}
+
+footer {
+	width: 105%;
+	height: 20px;
+	flex-grow: 0;
+	background-color: grey;
 }

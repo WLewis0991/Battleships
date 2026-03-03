@@ -1,7 +1,7 @@
 // Battleship
 import "./styles.css";
-import { Player } from "./player.js";
 import { Gameboard } from "./board.js";
+import { Player } from "./player.js";
 
 export { resetGame };
 
@@ -30,7 +30,8 @@ function resetGame() {
 
 const closeButton = document.getElementById("close");
 closeButton.addEventListener("click", () => {
-	const dialog = document.getElementById("winner");
+	const winner = document.getElementById("winner");
+	winner.style.display="none"
 	winner.close();
 	resetGame();
 });

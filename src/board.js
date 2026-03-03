@@ -171,6 +171,12 @@ class Gameboard {
 
 	checkWin() {
 		if (this.shipsSunk === 5) {
+			const boardEl = document.querySelector(".board");
+
+			boardEl.removeEventListener("click", (e) => {
+				addListeners(e);
+			});
+
 			alert(`${this.name} won!`);
 		}
 		return;

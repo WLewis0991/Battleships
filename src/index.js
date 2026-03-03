@@ -3,12 +3,14 @@ import "./styles.css";
 import { Player } from "./player.js";
 import { Gameboard } from "./board.js";
 
-const player1 = new Player("Will");
-const player2 = new Player("Computer");
+let player1;
+let player2;
 
-const button = document.getElementById("start");
+const button = document.getElementById("reset");
 button.addEventListener("click", () => {
 	console.log("button clicked");
+	player1 = new Player("Will");
+	player2 = new Player("Computer");
 	player1.board.placeAllShips();
 	player2.board.placeAllShips();
 	console.log("ships placed");
@@ -56,6 +58,10 @@ function buildBoard() {
 const boardEl = document.querySelector(".board");
 
 boardEl.addEventListener("click", (e) => {
+	addListeners(e);
+});
+
+function addListeners(e) {
 	if (!e.target.classList.contains("square")) return;
 
 	const x = Number(e.target.dataset.x);
@@ -88,4 +94,4 @@ boardEl.addEventListener("click", (e) => {
 	if (result === "already") {
 		console.log("Stop clicking the same square.");
 	}
-});
+}

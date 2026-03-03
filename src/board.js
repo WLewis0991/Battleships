@@ -1,4 +1,6 @@
 import { Ship } from "./ship.js";
+import { resetGame } from "./index.js";
+
 export { Gameboard };
 
 class Gameboard {
@@ -171,13 +173,10 @@ class Gameboard {
 
 	checkWin() {
 		if (this.shipsSunk === 5) {
-			const boardEl = document.querySelector(".board");
-
-			boardEl.removeEventListener("click", (e) => {
-				addListeners(e);
-			});
-
-			alert(`${this.name} won!`);
+			const dialog = document.getElementById("winner");
+			dialog.showModal();
+			const winnerMessage = document.getElementById("winnerMessage");
+			winnerMessage.innerText = `${this.name} WINS!! Ready to play again?`;
 		}
 		return;
 	}

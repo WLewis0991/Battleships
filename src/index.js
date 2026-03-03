@@ -3,11 +3,20 @@ import "./styles.css";
 import { Player } from "./player.js";
 import { Gameboard } from "./board.js";
 
+export { resetGame };
+
 let player1;
 let player2;
 
+const start = document.getElementById("winner");
+start.showModal();
+
 const button = document.getElementById("reset");
 button.addEventListener("click", () => {
+	resetGame();
+});
+
+function resetGame() {
 	console.log("button clicked");
 	player1 = new Player("Will");
 	player2 = new Player("Computer");
@@ -17,6 +26,13 @@ button.addEventListener("click", () => {
 	buildBoard();
 	player2.board.markShips();
 	console.log("board built");
+}
+
+const closeButton = document.getElementById("close");
+closeButton.addEventListener("click", () => {
+	const dialog = document.getElementById("winner");
+	winner.close();
+	resetGame();
 });
 
 function buildBoard() {

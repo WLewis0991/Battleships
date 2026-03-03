@@ -1,8 +1,10 @@
-import { resetGame } from "./index.js";
+
 import { Ship } from "./ship.js";
 
 export { Gameboard };
 
+//Building of board (backend not UI) and saving of game data related 
+//to player and computer location choices
 class Gameboard {
 	constructor(name) {
 		this.board = [];
@@ -31,8 +33,6 @@ class Gameboard {
 		}
 	}
 
-	//loadShips() {}
-
 	//CFunction to randomize computer attacks
 	compAttack() {
 		const x = Math.floor(Math.random() * 10);
@@ -45,6 +45,9 @@ class Gameboard {
 		if (attack < 0) {
 			const message = document.getElementById("message");
 			const result = this.recieveAttack(x, y);
+			//Check if attack location mattches a ships coords
+
+			//Missed shot result
 			if (result === "miss") {
 				message.innerText = `${this.name} missed!`;
 				const squares = document.querySelectorAll(".computer");
@@ -54,6 +57,8 @@ class Gameboard {
 					}
 				});
 			}
+
+			//Hit shot result
 			if (result === "hit") {
 				message.innerText = `${this.name} hit a ship!`;
 				const squares = document.querySelectorAll(".computer");
@@ -64,6 +69,8 @@ class Gameboard {
 					}
 				});
 			}
+
+			//Sunk shot result
 			if (result === "sunk") {
 				const squares = document.querySelectorAll(".computer");
 				squares.forEach((sq) => {
@@ -74,7 +81,7 @@ class Gameboard {
 					this.checkWin();
 				});
 			}
-		} else {
+		} else { //If computers random attack location was already used, repeat function
 			this.compAttack();
 		}
 	}
@@ -123,7 +130,7 @@ class Gameboard {
 			this.generateAndPlaceShip(ship);
 		}
 	}
-	//Random ship placement
+	//Random ship placement in the backend, no UI
 	generateAndPlaceShip(ship) {
 		const length = ship.length;
 		let position = [];
@@ -159,7 +166,7 @@ class Gameboard {
 			this.board[row][col] = 1;
 		}
 	}
-
+	//Mark locations of ships coords for UI
 	markShips() {
 		for (const ship of Object.values(this.ships)) {
 			for (const [i, j] of ship.coords) {
@@ -173,7 +180,7 @@ class Gameboard {
 			}
 		}
 	}
-
+	//Check if all ships have been sunk and if so, display winning message/ reset option
 	checkWin() {
 		if (this.shipsSunk === 5) {
 			const winner = document.getElementById("winner");

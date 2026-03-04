@@ -1,5 +1,6 @@
 
 import hitSoundFile from "./audio/hit.mp3"
+import sunkSoundFile from "./audio/sunkAudio.mp3"
 export { Ship };
 
 
@@ -13,6 +14,7 @@ class Ship {
 		this.sunk = false;
 		this.coords = null;
 		this.hitSound =  new Audio(hitSoundFile);
+		this.sunkSound = new Audio(sunkSoundFile)
 	}
 
 	hit(x, y) {
@@ -27,8 +29,8 @@ class Ship {
 		if (this.hits === this.length) {
 			this.sunk = true;
 			const message = document.getElementById("message");
-      		this.hitSound.play().catch(() => {});
-			this.hitSound.currentTime = 0;
+      		this.sunkSound.play().catch(() => {});
+			this.sunkSound.currentTime = 0;
 			message.innerText = `A ${this.name} has been sunk!`;
 			console.log(`${this.name} has been sunk!`);
 			return "sunk";

@@ -17,7 +17,7 @@ function addListeners(e) {
 		message.innerText = `${player1.name} hit a ship!`;
 		setTimeout(() => {
 			player2.board.compAttack();
-		}, 1000);
+		}, 1500);
 	}
 
 	if (result === "miss") {
@@ -25,7 +25,7 @@ function addListeners(e) {
 		message.innerText = `${player1.name} missed!`;
 		setTimeout(() => {
 			player2.board.compAttack();
-		}, 1000);
+		}, 1500);
 	}
 
 	if (result === "sunk") {
@@ -33,7 +33,7 @@ function addListeners(e) {
 		player1.board.checkWin();
 		setTimeout(() => {
 			player2.board.compAttack();
-		}, 1000);
+		}, 1500);
 	}
 
 	if (result === "already") {

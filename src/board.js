@@ -48,7 +48,7 @@ class Gameboard {
 			//Check if attack location mattches a ships coords
 
 			//Missed shot result
-			if (result === "miss") {
+			if (result === "miss") {	
 				message.innerText = `${this.name} missed!`;
 				const squares = document.querySelectorAll(".computer");
 				squares.forEach((sq) => {

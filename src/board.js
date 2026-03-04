@@ -1,7 +1,11 @@
-
+import missSoundFile from "./audio/miss.mp3";
+import hitSoundFile from "./audio/hit.mp3"
 import { Ship } from "./ship.js";
 
 export { Gameboard };
+
+const missSound = new Audio(missSoundFile);
+const hitSound= new Audio(hitSoundFile)
 
 //Building of board (backend not UI) and saving of game data related 
 //to player and computer location choices
@@ -11,6 +15,7 @@ class Gameboard {
 		this.attempts = [];
 		this.shipsSunk = 0;
 		this.name = name;
+		this.missSound =  new Audio(missSoundFile);
 
 		// Playable ships
 		this.ships = {
@@ -72,6 +77,7 @@ class Gameboard {
 
 			//Sunk shot result
 			if (result === "sunk") {
+				hitSound.play();
 				const squares = document.querySelectorAll(".computer");
 				squares.forEach((sq) => {
 					if (Number(sq.dataset.x) === x && Number(sq.dataset.y) === y) {
@@ -93,6 +99,9 @@ class Gameboard {
 			console.log("Miss!");
 			this.board[x][y] = "2";
 			this.attempts.push([x, y]);
+      		this.missSound.currentTime = 0;
+      		this.missSound.play().catch(() => {});
+			this.missSound.currentTime = 0
 			return "miss";
 		}
 		if (attack === 1) {

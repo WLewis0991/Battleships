@@ -25,7 +25,7 @@
 This started as just a basic project , but soon I wanted to give this a feel of a retro style battleship game. The game is a basic battleship game. User picks a location and the computer follows up with a location of thier own. the game is logged complete on a board in the backend as well as in the UI. The backgound was generated us AI but the board that the game is actually played on and all code is 100% hand coded.
 
 ## 🚀 Deployment <a name = "deployment"></a>
-Add additional notes about how to deploy this on a live system.
+Super easy to give the game a try just [Click Here](https://wlewis0991.github.io/Battleships/).
 
 ## ⛏️ Built Using <a name = "built_using"></a>
 

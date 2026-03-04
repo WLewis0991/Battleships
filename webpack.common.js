@@ -29,7 +29,11 @@ export default {
 			{
 				test: /\.(png|svg|jpg|jpeg|gif)$/i,
 				type: "asset/resource",
-			},
+			},	
+			{
+        		test: /\.(mp3|wav|ogg)$/i,
+        		type: 'asset/resource', // Tells webpack to emit the file and export its URL
+      		},
 		],
 	},
 };

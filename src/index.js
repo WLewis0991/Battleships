@@ -14,7 +14,7 @@ let player2;
 
 //Start screen open on page load
 const start = document.getElementById("winner");
-start.showModal();
+//start.showModal();
 
 //Event listener to load a new board/ replace ships
 const button = document.getElementById("reset");
@@ -41,11 +41,11 @@ boardEl.addEventListener("click", (e) => {
 //Clear board, load player ships in new location
 function resetGame() {
 	console.log("button clicked");
-	player1 = new Player("You");
+	player1 = new Player("Player");
 	player2 = new Player("Computer");
 	player1.board.placeAllShips();
 	player2.board.placeAllShips();
-	console.log("ships placed");
+	console.log("ships placed, players created");
 	buildBoard();
 	player2.board.markShips();
 	console.log("board built");

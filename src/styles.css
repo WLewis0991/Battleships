@@ -1,121 +1,181 @@
 /* Style sheet */
 * {
-	margin: 0;
+	background-color: #191d13;
 	padding: 0;
+	margin: 0;
 }
-
 
 body {
+	  font-family: 'Press Start 2P', monospace;
+  color: #b7ff3c; /* lime green retro text */
+  text-shadow: 0 0 7px #8bdc2f;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	height: 100vh;
-	font-family: sans-serif;
-}
-
-#winner{
-	display: flex;
-	flex-direction: column;
-	  position: fixed;
-	  width:600px;
-	  height: 200px;
-	  justify-content: center;
-	  align-items: center;
-  top: 50%;         /* Moves the top edge to the vertical center */
-  left: 50%;        /* Moves the left edge to the horizontal center */
-  transform: translate(-50%, -50%);
-
-}
-
-#winner::backdrop {
-	background: rgba(0, 0, 0, 0.4);
-	backdrop-filter: blur(5px);
-}
-
-header {
-	flex-grow: 0;
-	width: 105%;
-	height: 40px;
-	text-align: center;
-	background-color: grey;
 	margin: 0;
-	padding: 10px;
+	padding: 0;
+	width: 1500px;
+	height: 800px;
+	cursor: url(imgs/cursor.svg), auto;
 }
+#winner{
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  width:700px;
+  height: 200px;
+  justify-content: center;
+  align-items: center;
+  top: 50%;         /* Moves the top edge to the vertical center */
+  left: 48.7%;        /* Moves the left edge to the horizontal center */
+  transform: translate(-50%, -50%);
+  border: 1px solid #b5d64c;
+  font-size: 1.2rem;
+	color: #b6d64cfd;
+  background-color: #191d13;
+}
+
+
+
 
 .game {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	flex-grow: 1;
+		  position: relative;              /* Anchor for absolute children */
+
+
+background-image: url(imgs/newBattleshipBackgorund.png);
+  background-size: container;          /* Or use contain */
+  background-repeat: no-repeat;
+  background-position: center center;
+
+  overflow: hidden;  
+  background-size: 100% 100%;
+  width: 1500px;
+  height: 800px;
+  display: flex;
 }
 
-.boardContainer {
-	display: flex;
-	justify-content: center;
-	align-items: center;
+#close{
+	font-family: 'Press Start 2P', monospace;
+	font-size: 1rem;
+	padding: 10px 30px;
+	border: none;
+	border-radius: 15px;
+	margin: 20px;
+	font-size: 1.2rem;
+	color: #b6d64cfd;
+	text-shadow: 0 0 7px #8bdc2f;
+	transition: ease 700ms;
+	cursor: url(imgs/cursor.svg), auto;
+
 }
+
+#close:hover {
+	transform: scale(1.5);
+}
+
+
 
 .board {
 	display: flex;
-	width: 502px;
-	height: 502px;
+	width: 530px;
+	height: 417.9px;
 	flex-wrap: wrap;
-	border: 1px solid black;
+	border: 1px solid #b5d64c;
 	padding: 0px;
 	margin: 20px;
 	box-sizing: border-box;
-}
-
-.square {
-	width: 50px;
-	height: 50px;
-	border: 2px solid grey;
-	padding: 0px;
-	margin: 0px;
-	box-sizing: border-box;
-}
-
-.computer {
-	width: 50px;
-	height: 50px;
-	border: 2px solid grey;
-	padding: 0px;
-	margin: 0px;
-	box-sizing: border-box;
-}
-
-.hit {
-	background-color: red;
-}
-
-.sunk {
-	background-color: green;
-}
-
-.miss {
-	background-color: lightblue;
+	position: absolute;
+	top: 158px;
+	right: 787px;
 }
 
 .enemyBoard {
 	display: flex;
-	width: 502px;
-	height: 502px;
+	width: 530px;
+	height: 417.9px;
 	flex-wrap: wrap;
-	border: 1px solid black;
+	border: 1px solid #b5d64c;
 	padding: 0px;
 	margin: 20px;
 	box-sizing: border-box;
+
+	
+	position: absolute;
+	top: 158px;
+	right: 95px;
 }
+
+.square {
+	width: 52.8px;
+	height: 41.5px;
+	border: 1px solid #b5d64c;
+	padding: 0px;
+	margin: 0px;
+	box-sizing: border-box;
+	background-color: #191d13;
+	transition: ease-in-out 400ms;
+}
+
+.square:hover{
+	transform: scale(1.05);
+	outline: 1px solid #b7ff3c;
+	  box-shadow: 0 0 8px #8bdc2f;
+}
+
+.computer {
+	width: 52.8px;
+	height: 41.5px;
+	border: 1px solid #b5d64c;
+	padding: 0px;
+	margin: 0px;
+	box-sizing: border-box;
+	background-color: #191d13;
+}
+
+#message {
+
+	position: absolute;
+	font-size: 1.3rem;
+	color: #b6d64cfd;
+	top: 690px;
+	left: 428px;
+}
+
+#reset {
+	font-family: 'Press Start 2P', monospace;
+	font-size: 1rem;
+	color: #b6d64cfd;
+	text-shadow: 0 0 7px #8bdc2f;
+	transition: ease 700ms;
+	border: none;
+	position: absolute;
+	top: 707px;
+	left: 960px;
+	transition: ease 700ms;
+	cursor: url(imgs/cursor.svg), auto;
+	padding: 10px;
+	background-color: transparent;
+}
+
+#reset:hover {
+	transform: scale(1.5);
+}
+
+
+.hit {
+	background-color: rgba(151, 5, 5, 0.842);
+}
+
+
+.miss {
+	background-color: #b6d64c32;
+}
+
+
 
 .ship {
-	background-color: black;
+	background-color: #b6d64cc2;
 }
 
-footer {
-	width: 105%;
-	height: 20px;
-	flex-grow: 0;
-	background-color: grey;
-}

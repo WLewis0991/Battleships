@@ -187,7 +187,7 @@ class Gameboard {
 			winner.style.display = "flex"
 			winner.showModal();
 			const winnerMessage = document.getElementById("winnerMessage");
-			winnerMessage.innerText = `${this.name} WINS!! Ready to play again?`;
+			winnerMessage.innerText = `${this.name} is the winner!! Ready to play again?`;
 		}
 		return;
 	}

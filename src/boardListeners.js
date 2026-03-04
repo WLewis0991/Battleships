@@ -37,6 +37,8 @@ function addListeners(e) {
 	}
 
 	if (result === "already") {
+		const message = document.getElementById("message");
+		message.textContent = "You alerady tried there!"
 		console.log("Stop clicking the same square.");
 	}
 }
